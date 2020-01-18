@@ -3,6 +3,7 @@ import React from 'react';
 import Task from './Task';
 
 const Stage = ({ name, stageId, tasks }) => {
+  
   return (
     <div
       data-testid={`stage-${stageId}`}
@@ -12,7 +13,7 @@ const Stage = ({ name, stageId, tasks }) => {
         paddingBottom: '1rem',
         background: '#fafafa',
       }}>
-      <h2>{name}</h2>
+      <h2>{name} {stageId}</h2>
       <div>
         {tasks.map(task => (
           <Task

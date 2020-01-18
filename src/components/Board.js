@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Stage from './Stage';
 
 const Board = ({ stagesNames, stagesTasks }) => {

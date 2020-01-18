@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-
+//import {name,data-testid} from './Task.js';
 class Controls extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+    current:this.props.currentvalue
+    }
+  }
+
   render() {
     return (
       <div style={{ padding: '1rem', background: '#D6F3FF' }}>
@@ -10,6 +17,7 @@ class Controls extends Component {
             readOnly
             placeholder="Selected task name"
             style={{ fontSize: '1rem' }}
+            value={this.state.current}
             data-testid="selected-task-field"
           />
           <button

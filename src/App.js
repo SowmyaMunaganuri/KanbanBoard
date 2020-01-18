@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Controls from './components/Controls';
-import Board from './components/Board';
+import Controls from './component/Controls';
+import Board from './component/Board';
 
 const NUM_STAGES = 4;
 
@@ -22,17 +22,35 @@ class App extends Component {
           { name: 'task 8', stage: 2 },
           { name: 'task 9', stage: 3 },
       ],
+      taskselected:'',
+      taskstage:''
     };
+    this.selectCallback=this.selectCallback.bind(this);
+    this.movef=this.movef.bind(this);
+    this.moveb=this.moveb.bind(this);
     this.stagesNames = ['Backlog', 'To Do', 'Ongoing', 'Done'];
+  }
+  selectCallback(name,id){
+    console.log("Selected task was: "+name)
+    this.setState({
+      taskselected:name,
+      taskstage:id
+    });
+  }
+  movef(){
+    console.log('Move forward');
+  }
+  moveb(){
+    console.log('Move back')
   }
 
   render() {
     const { tasks } = this.state;
-
     let stagesTasks = [];
     for (let i = 0; i < NUM_STAGES; ++i) {
       stagesTasks.push([]);
     }
+    
     for (let task of tasks) {
       const stageId = task.stage;
       stagesTasks[stageId].push(task);
@@ -40,10 +58,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Controls />
+        <Controls 
+        task={this.state.taskselected}
+        id={this.state.taskstage}
+        movef={this.movef}
+        moveb={this.moveb}/>
         <Board
+        
           stagesTasks={stagesTasks}
           stagesNames={this.stagesNames}
+          selectCallback={this.selectCallback}
         />
       </div>
     );
